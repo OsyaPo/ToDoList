@@ -240,3 +240,9 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/ToDoList/flask_sqlalchemy
+/ToDoList/sqlalchemy
+/ToDoList/pip
+/ToDoList/ToDoList/__pycache__
+/ToDoList/ToDoList/ToDo.db
+/ToDoList/ToDo.db

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List: {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />-->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/static/scripts/bootstrap.min.js"></script>
+    <!--https://github.com/tavicu/bs-confirmation/-->
+    <script src="/static/scripts/bootstrap-confirmation.js"></script>
+
+    <!--https://cdnjs.com/libraries/bootstrap-datepicker-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css" />
+    
+    <!--http://bootstrap-colorselector.flaute.com/-->
+    <link rel="stylesheet" type="text/css" href="/static/scripts/bootstrap-colorselector.css" />
+    <script src="/static/scripts/bootstrap-colorselector.js"></script>
+    
+    <!-- http://1000hz.github.io/bootstrap-validator/ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+
+    <!-- http://fontawesome.io -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- app's own JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+
+<!--http://stackoverflow.com/questions/35023107/jinja2-set-background-image-->
+<blockbody>
+    {% if session.user_id  %}
+        <body background="{{ url_for('static', filename='main.png') }}"> 
+    {% else %}
+        <body background="{{ url_for('static', filename='u_can_do_more.jpg') }}">
+    {% endif %}
+        <div class="container">
+            <div class="navbar">
+                <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+                    <div class="container-fluid">
+                        {% if session.user_id %}
+                        <ul class="nav navbar-nav" role="tablist">
+                            <li><a href="{{ url_for('index') }}" class="list_logo"><i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>My tasks </a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><h5>Logged in as {{user}}</h5></li>
+                            <li><a href="{{ url_for('settings') }}">Settings</a></li>
+                            <li><a href="{{ url_for('logout') }}">Log out</a></li>
+                        </ul>
+                        {% else %}
+                        <ul class="nav navbar-nav" role="tablist">
+                            <li class="logo"><i class="fa fa-calendar-check-o fa-2x" aria-hidden="true"></i>To-Do List</li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{{ url_for('register') }}">Register</a></li>
+                            <li><a href="{{ url_for('login') }}">Log in</a></li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </nav>
+            </div>
+            
+            {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-danger" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+            {% endif %}
+    
+            <main>
+                {% block main %}{% endblock %}
+            </main>
+        </div>
+        </blockbody>
+</html>

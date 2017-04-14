@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log in
+{% endblock %}
+
+{% block main %}
+{% if log_message == True %}
+<div class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    Invalid email and/or password
+</div>
+{% endif %}
+
+<div class="login_body">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-8">
+            <h4 class="log_header"> Welcome to the To-Do list </h4>
+            <form action="{{ url_for('login') }}" method="post">
+                <fieldset>
+                    <div class="form-group">
+                        <input autocomplete="off" autofocus class="form-control" id="log" name="email" placeholder="Email" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" name="password" id="log" placeholder="Password" type="password" />
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-default pull-right" id="log" type="submit">Log in</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+﻿{% extends "layout.html" %}
+
+{% block title %}
+    My long-term tasks
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-1 col-md-offset-11">
+            <a class="btn" role="button" data-toggle="collapse" href="#lt_newTask" aria-expanded="false" aria-controls="lt_newTask">
+                <i class="fa fa-plus-circle fa-3x" id="plus" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    <div class="collapse" id="newTask">
+        <!-- <div class="well">-->
+        <form id="addTask" method="post" data-toggle="validator">
+            <div class="row">
+                <div class="col-md-7 col-md-offset-1">
+                    <label for="task">New Task</label>
+                    <textarea class="form-control" rows="5" id="task" placeholder="I need to do" required type="text" data-error="You forgot to add a task"></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" class="form-control" id="time">
+                    </div>
+                    <label for="date">Date</label>
+                    <div class="input-group date datepicker" data-provide="datepicker">
+                        <input type="text" class="form-control" id="date">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="priority">Priority</label>
+                        <select class="form-control" id="priority">
+                            <option>Avarage</option>
+                            <option>Low</option>
+                            <option>High</option>
+                        </select>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary my_label" role="button" data-toggle="collapse" href="#label" aria-expanded="false" aria-controls="label">
+                            Label
+                        </a>
+                    </div>
+                    <div class="collapse" id="label">
+                        <select class="form-control" id="color">
+                            <option></option>
+                            <option value="label label-default" style="background-color: #615d5d"></option>
+                            <option value="label label-warning" style="background-color: #f7ac16"></option>
+                            <option value="label label-danger" style="background-color: #db4649"></option>
+                            <option value="label label-primary" style="background-color: #4465a6"></option>
+                            <option value="label label-success" style="background-color: #359c3a"></option>
+                        </select>
+                        <input type="text" class="form-control" id="label_text" placeholder="Text" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-6">
+                    <button type="submit" id="add" class="btn btn-lg btn-warning">Add</button>
+                </div>
+            </div>
+        </form>
+        <!--</div>-->
+    </div>
+    <div class="table-responsive">
+        <table class="table" id="list_table">
+            <thead>
+                <tr>
+                    <th colspan="6"> My long-term tasks </th>
+                </tr>
+            </thead>
+            <tbody> </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
